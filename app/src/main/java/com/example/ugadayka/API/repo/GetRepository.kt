@@ -1,0 +1,16 @@
+package com.example.ugadayka.API.repo
+
+import com.example.ugadayka.API.responses.CategoryResponse
+import com.example.ugadayka.API.responses.SubcategoryResponse
+import com.example.ugadayka.source.RemoteDataSource
+
+class GetRepository(private val remoteData: RemoteDataSource = RemoteDataSource()) {
+
+    suspend fun getCategories(): MutableList<CategoryResponse> {
+        return remoteData.getCategories()
+    }
+
+    suspend fun getSubcategories(): MutableList<SubcategoryResponse> {
+        return remoteData.getSubcategories()
+    }
+}

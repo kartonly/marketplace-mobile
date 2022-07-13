@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <Button
+        android:id="@+id/catalog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:text="@string/catalog"
+        android:backgroundTint="@color/white"
+        android:textSize="@dimen/Cat28"
+        android:textColor="@color/darkblue"
+        tools:ignore="MissingConstraints,SpUsage" />
+
+    <Button
+        android:id="@+id/female"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:text="@string/female"
+        android:backgroundTint="@color/white"
+        android:textSize="@dimen/small"
+        android:textColor="@color/darkblue"
+        app:layout_constraintTop_toBottomOf="@id/catalog"
+        tools:ignore="MissingConstraints,SpUsage" />
+
+    <Button
+        android:id="@+id/male"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:text="@string/male"
+        android:backgroundTint="@color/white"
+        android:textSize="@dimen/small"
+        android:textColor="@color/darkblue"
+        app:layout_constraintTop_toBottomOf="@id/female"
+        tools:ignore="MissingConstraints,SpUsage" />
+
+    <Button
+        android:id="@+id/girl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:text="@string/girl"
+        android:backgroundTint="@color/white"
+        android:textSize="@dimen/small"
+        android:textColor="@color/darkblue"
+        app:layout_constraintTop_toBottomOf="@id/male"
+        tools:ignore="MissingConstraints,SpUsage" />
+
+    <Button
+        android:id="@+id/boy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:text="@string/boys"
+        android:backgroundTint="@color/white"
+        android:textSize="@dimen/small"
+        android:textColor="@color/darkblue"
+        app:layout_constraintTop_toBottomOf="@id/girl"
+        tools:ignore="MissingConstraints,SpUsage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

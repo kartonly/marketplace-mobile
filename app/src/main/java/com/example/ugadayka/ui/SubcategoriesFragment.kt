@@ -11,14 +11,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ugadayka.R
 import com.example.ugadayka.databinding.CategoriesFragmentBinding
+import com.example.ugadayka.databinding.SubcategoriesFragmentBinding
 import com.example.ugadayka.models.Categories
+import com.example.ugadayka.models.Subcategories
 import com.example.ugadayka.ui.adapters.CategoriesAdapter
 import com.example.ugadayka.ui.adapters.SubcategoriesAdapter
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class SubcategoriesFragment(private var viewModel: MainViewModel, private val category: Categories, private val gender: String): Fragment() {
-    private lateinit var binding: CategoriesFragmentBinding
+    private lateinit var binding: SubcategoriesFragmentBinding
 
     private val verticalLinearLayoutManager: LinearLayoutManager =
         LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
@@ -27,7 +29,7 @@ class SubcategoriesFragment(private var viewModel: MainViewModel, private val ca
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = CategoriesFragmentBinding.inflate(layoutInflater, container,false)
+        binding = SubcategoriesFragmentBinding.inflate(layoutInflater, container,false)
         binding.name.text = category.title
 
         fun main() = runBlocking {
@@ -47,9 +49,9 @@ class SubcategoriesFragment(private var viewModel: MainViewModel, private val ca
         binding.catalogList.adapter = SubcategoriesAdapter(subcategories, ::showProducts)
     }
 
-    private fun showProducts(id: Int): Unit{
-//        fragmentManager?.beginTransaction()?.replace(R.id.main_container, SubcategoriesFragment(viewModel, id, title), SubcategoriesFragment::class.java.simpleName)
-//            ?.commit()
+    private fun showProducts(subcat: Subcategories): Unit{
+        fragmentManager?.beginTransaction()?.replace(R.id.main_container, ProductsFragment(viewModel, subcat, gender), SubcategoriesFragment::class.java.simpleName)
+            ?.commit()
     }
 
 }

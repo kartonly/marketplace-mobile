@@ -10,18 +10,18 @@ import com.example.ugadayka.models.Categories
 import com.example.ugadayka.models.Subcategories
 import java.util.*
 
-class SubcategoriesAdapter(private val subcategories: MutableList<Subcategories>, private val clickSubcat: (Int) -> Unit):  RecyclerView.Adapter<SubcategoriesAdapter.SubcategoriesHolder>(){
+class SubcategoriesAdapter(private val subcategories: MutableList<Subcategories>, private val clickSubcat: (Subcategories) -> Unit):  RecyclerView.Adapter<SubcategoriesAdapter.SubcategoriesHolder>(){
 
     inner class SubcategoriesHolder internal constructor(
         private val binding: ItemCatalogBinding,
-        private val clickSubcat: (Int) -> Unit
+        private val clickSubcat: (Subcategories) -> Unit
     ): RecyclerView.ViewHolder(binding.root)
     {
         fun bind(subcat: Subcategories) = binding.run{
             name.text = subcat.title
 
             binding.name.setOnClickListener {
-                clickSubcat(subcat.id)
+                clickSubcat(subcat)
             }
         }
     }

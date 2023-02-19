@@ -1,8 +1,10 @@
 package com.example.ugadayka.API
 
 import com.example.ugadayka.API.responses.CategoryResponse
+import com.example.ugadayka.API.responses.ProductsResponse
 import com.example.ugadayka.API.responses.SubcategoryResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface  API {
@@ -13,7 +15,7 @@ interface  API {
     suspend fun getSubcategories(): MutableList<SubcategoryResponse>
 
     @GET("products/subcategory/{subcategory}/{gender}")
-    suspend fun getProductsBySubcategory(@Query("subcategory") subcategory: String, @Query("gender") gender: String): MutableList<SubcategoryResponse>
+    suspend fun getProductsBySubcategory(@Path("subcategory") subcategory: String, @Path("gender") gender: String): MutableList<ProductsResponse>
 
 }
 

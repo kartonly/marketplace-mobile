@@ -6,39 +6,44 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ugadayka.API.responses.CategoryResponse
 import com.example.ugadayka.databinding.ItemCatalogBinding
+import com.example.ugadayka.databinding.ItemProductBinding
 import com.example.ugadayka.models.Categories
+import com.example.ugadayka.models.Products
 import com.example.ugadayka.models.Subcategories
+import com.squareup.picasso.Picasso
 import java.util.*
 
-class ProductsAdapter(private val subcategories: MutableList<Subcategories>, private val clickSubcat: (Int) -> Unit):  RecyclerView.Adapter<ProductsAdapter.SubcategoriesHolder>(){
+class ProductsAdapter(private val products: MutableList<Products>, private val clickSubcat: (Int) -> Unit):  RecyclerView.Adapter<ProductsAdapter.ProductsHolder>(){
 
-    inner class SubcategoriesHolder internal constructor(
-        private val binding: ItemCatalogBinding,
-        private val clickSubcat: (Int) -> Unit
+    inner class ProductsHolder internal constructor(
+        private val binding: ItemProductBinding,
+        private val clickProduct: (Int) -> Unit
     ): RecyclerView.ViewHolder(binding.root)
     {
-        fun bind(subcat: Subcategories) = binding.run{
-            name.text = subcat.title
+        fun bind(product: Products) = binding.run{
+            name.text = product.title
+            price.text = product.cost.toString()+" р."
+            Picasso.get().load("http://marketplace.std-941.ist.mospolytech.ru/"+product.photos[0]).into(photo);
 
             binding.name.setOnClickListener {
-                clickSubcat(subcat.id)
+                clickProduct(product.id)
             }
         }
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsAdapter.SubcategoriesHolder {
-        val binding = ItemCatalogBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SubcategoriesHolder(binding, clickSubcat)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsAdapter.ProductsHolder {
+        val binding = ItemProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ProductsHolder(binding, clickSubcat)
     }
 
     override fun getItemCount(): Int {
-        return subcategories.size
+        return products.size
     }
 
-    override fun onBindViewHolder(holder: SubcategoriesHolder, position: Int) {
-        val cats: MutableList<Subcategories> = subcategories
-        val cat = cats[position]
-        holder.bind(cat)
+    override fun onBindViewHolder(holder: ProductsHolder, position: Int) {
+        val prods: MutableList<Products> = products
+        val prod = prods[position]
+        holder.bind(prod)
     }
 }

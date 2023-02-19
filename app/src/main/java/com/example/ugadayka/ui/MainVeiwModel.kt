@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.ugadayka.API.MainHolder
 import com.example.ugadayka.API.responses.CategoryResponse
 import com.example.ugadayka.models.Categories
+import com.example.ugadayka.models.Products
 import com.example.ugadayka.models.Subcategories
 import java.util.*
 
@@ -34,10 +35,19 @@ class MainViewModel(application: Application) : ViewModel() {
         val subcategories= MainHolder.getSubcats()
         for (i in subcategories){
             if (i.category_id == category){
-                subcatsList.add(Subcategories(i.id, i.title, i.category_id))
+                subcatsList.add(Subcategories(i.id, i.title, i.category_id, i.trans))
             }
         }
         return subcatsList
+    }
+
+    suspend fun getProductsBySubcat(subcategory: String, gender: String): MutableList<Products> {
+        val productsList: MutableList<Products> = mutableListOf()
+        val prods= MainHolder.getProductsBySubcategory(subcategory, gender)
+        for (i in prods){
+            productsList.add(Products(i.id, i.title, i.cost, i.desc, i.photos))
+        }
+        return productsList
     }
 
 }
